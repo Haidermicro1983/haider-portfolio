@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { motion, easeOut } from "framer-motion";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { useState } from "react";
@@ -24,17 +24,18 @@ export default function Portfolio() {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.6, ease: easeOut }
   };
 
   return (
     <div className="min-h-screen bg-gray-50 text-slate-900 font-sans">
+
       {/* Hero Section */}
       <motion.section {...sectionMotionProps} className="px-6 py-24 max-w-5xl mx-auto text-center">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: easeOut }}
           className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight"
         >
           Haider Tememi
@@ -125,7 +126,7 @@ export default function Portfolio() {
         </div>
       </motion.section>
 
-      {/* Dashboards Section with Lightbox */}
+      {/* Dashboards Section */}
       <motion.section {...sectionMotionProps} className="px-6 py-20 bg-gray-100">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-semibold mb-12 text-center">Analytics Dashboards</h2>
@@ -160,7 +161,7 @@ export default function Portfolio() {
             onSubmit={(e) => {
               e.preventDefault();
               alert('Thank you! Your message has been sent.');
-              e.target.reset();
+              (e.target as HTMLFormElement).reset();
             }}
           >
             <div className="flex flex-col">
@@ -190,6 +191,8 @@ export default function Portfolio() {
     </div>
   );
 }
+
+
 
 
 
